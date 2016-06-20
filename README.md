@@ -180,7 +180,19 @@ After you have installed your chosen OSes, add the following file to the root di
 
 2. Add `boot_partition=<partition number>` to the file and save it to disk.
 
-This will also prevent the splashscreen from being displayed at boot. The partition number can be found by running `sudo fdisk -l` the partition will be one of the FAT32 partitions `/dev/mmcblk0p6` would be partition 6. Note that once an `autoboot.txt` file is present, there's then no way to force the NOOBS GUI to display, until you delete (or rename) the `autoboot.txt` file.
+This will also prevent the splashscreen from being displayed at boot. The partition number can be found by running `ls -l /dev/disk/by-label | grep RECOVERY` this will result is a listing as follows:
+
+and the partition to put the autoboot.txt can be found by mounting the `RECOVERY` partition
+
+    lrwxrwxrwx 1 root root 01 Jan 01 01:01 RECOVERY -> ../../mmcblk0p1
+
+In the above the partition number woul be `6` so the content of `autoboot.txt`
+
+
+
+
+
+`sudo fdisk -l` the partition will be one of the FAT32 partitions `/dev/mmcblk0p6` would be partition 6. Note that once an `autoboot.txt` file is present, there's then no way to force the NOOBS GUI to display, until you delete (or rename) the `autoboot.txt` file.
 
 ### How to use with the Raspberry Pi Touch Display
 
